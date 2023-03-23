@@ -1,5 +1,8 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Bb
 
 
 def index(request):
-    return HttpResponse('Скоро здесь будут объявления!')
+    bbs = Bb.objects.all()
+    context = {'bbs': bbs}
+    return render(request, 'bboardapp/index.html', context)
