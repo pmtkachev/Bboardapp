@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import CreateView
 from .models import Bb, Rubric
 from .forms import BbForm
@@ -16,17 +16,32 @@ class BbCreateView(CreateView):
         return context
 
 
-def index(request):
-    bbs = Bb.objects.all()
-    rubrics = Rubric.objects.all()
-    context = {'bbs': bbs, 'rubrics': rubrics}
-    return render(request, 'bboardapp/index.html', context)
+class MainPage(TemplateView):
+    template_name = 'bboardapp/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['bbs'] = Bb.objects.all()
+        context['rubrics'] = Rubric.objects.all()
+        return context
 
 
-def by_rubric(request, rubric_id):
-    bbs = Bb.objects.filter(rubric=rubric_id)
-    rubrics = Rubric.objects.all()
-    cur_rubric = Rubric.objects.get(pk=rubric_id)
-    context = {'bbs': bbs, 'rubrics': rubrics,
-               'cur_rubric': cur_rubric}
-    return render(request, 'bboardapp/by_rubric.html', context)
+class BbByRubView(TemplateView):
+    template_name = 'bboardapp/by_rubric.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['bbs'] = Bb.objects.filter(rubric=context['rubric_id'])
+        context['rubrics'] = Rubric.objects.all()
+        context['current_rubric'] = Rubric.objects.get(pk=context['rubric_id'])
+        return context
+
+
+class BbDetailView(DetailView):
+    model = Bb
+    template_name = 'bboardapp/bb_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['rubrics'] = Rubric.objects.all()
+        return context
