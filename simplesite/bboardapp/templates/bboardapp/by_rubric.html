@@ -7,7 +7,8 @@
 <h2>Категория: {{ cur_rubric.name }}</h2>
 {% for bb in bbs %}
 <div>
-    <h2><a href="{% url 'detail' pk=bb.pk %}">{{ bb.title }}</a> </h2>
+    <h2><a href="{% url 'detail' pk=bb.pk %}">{{ bb.title }}</a>
+    <a id="edit" href="{% url 'update' pk=bb.pk %}">✏️</a></h2>
     <p>{{ bb.text }}</p>
     <p>{{ bb.published|date:'d.m.Y H:i' }}</p>
 </div>

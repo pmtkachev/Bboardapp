@@ -5,6 +5,12 @@ header h1 {
     background: url("bg.jpg") left / auto 100% no-repeat;
 }
 
+header h2 {
+    font-size: 20pt;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 nav {
     font-size: 16pt;
     width: 150px;
@@ -18,4 +24,8 @@ nav a {
 
 section {
     margin-left: 170px;
+}
+
+a.action {
+    text-decoration: none;
 }
