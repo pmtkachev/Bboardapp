@@ -1,10 +1,10 @@
 {% extends 'layout/base.html' %}
 {% block title %}
-{{ cur_rubric.name }}
+{{ current_rubric.name }}
 {% endblock %}
 
 {% block content %}
-<h2>Категория: {{ cur_rubric.name }}</h2>
+<h2>Категория: {{ current_rubric.name }}</h2>
 {% for bb in bbs %}
 <div>
     <h2><a href="{% url 'detail' pk=bb.pk %}">{{ bb.title }}</a>

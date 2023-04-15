@@ -1,11 +1,15 @@
 {% extends 'layout/base.html' %}
+{% load django_bootstrap5 %}
+
 {% block title %}
 Добавить объявление
 {% endblock %}
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Добавить">
+<form class="col-md-6" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
+</div>
+
 {% endblock %}

@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # My apps
     'bboardapp',
+    # Other apps
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
