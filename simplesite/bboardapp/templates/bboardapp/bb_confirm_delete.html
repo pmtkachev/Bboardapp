@@ -7,6 +7,6 @@
 <p>Цена: {{ bb.price }}</p>
 <form method="post">
   {% csrf_token %}
-  <input type="submit" value="Удалить">
+  <input type="submit" class="btn btn-danger" value="Удалить">
 </form>
 {% endblock %}

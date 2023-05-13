@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+Вход
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="row justify-content-center">
+    <p>Вы уже вошли на сайт</p>
+</div>
+{% else %}
+<div class="row justify-content-center">
+    <form class="col-md-2" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="hidden" name="next" value="{{ index }}">
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

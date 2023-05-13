@@ -36,6 +36,17 @@
                         {% endfor %}
                     </ul>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'logout' %}active{% endif %}" aria-current="page"
+                       href="{% url 'logout' %}">Выход</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'login' %}active{% endif %}" aria-current="page"
+                       href="{% url 'login' %}">Вход</a>
+                </li>
+                {% endif %}
                 {% endwith %}
             </ul>
         </div>

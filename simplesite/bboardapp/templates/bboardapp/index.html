@@ -1,6 +1,10 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
+<div class="row">
+    <h2>Приветствую, {% if not user.is_authenticated %}Гость!{% else %}{{ user.username }}!</h2>
+    {% endif %}
+</div>
 <div class="row row-cols-3">
     {% for bb in bbs %}
     <div class="col">

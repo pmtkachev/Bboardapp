@@ -1,12 +1,13 @@
 {% extends 'layout/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block title %}
 Редактирование объявления
 {% endblock %}
 {% block content %}
-<form method="post">
+<form class="col-md-6" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Сохранить">
+  {% bootstrap_form form %}
+  <button type="submit" class="btn btn-secondary">Сохранить</button>
 </form>
 {% endblock %}

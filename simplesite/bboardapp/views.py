@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -62,6 +64,15 @@ class BbEditView(UpdateView):
 class BbDelete(DeleteView):
     model = Bb
     success_url = '/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['rubrics'] = Rubric.objects.all()
+        return context
+
+
+class LoginView(LoginView):
+    success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
